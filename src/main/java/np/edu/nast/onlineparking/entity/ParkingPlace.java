@@ -1,10 +1,19 @@
 package np.edu.nast.onlineparking.entity;
 
+
+import java.util.HashSet;
+import java.util.Set;
+
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,10 +40,12 @@ public class ParkingPlace {
 	@Column
 	private Long phoneNumber;
 	
+
 	@Column
 	 private Double latitude;
 	@Column
 	 private Double longitude;
+	
 	public Long getParkingPlaceId() {
 		return parkingPlaceId;
 	}

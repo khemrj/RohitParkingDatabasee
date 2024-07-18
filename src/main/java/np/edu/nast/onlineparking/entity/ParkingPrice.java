@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,15 +23,19 @@ import lombok.NoArgsConstructor;
 public class ParkingPrice {
     
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long priceId;
 	
 	@OneToOne
     @JoinColumn(name="category_id", referencedColumnName ="CategoryId")
     private Category category;
 	
+	@ManyToOne
+    @JoinColumn(name = "ParkingPlaceId", referencedColumnName = "parkingPlaceId")
+	private ParkingPlace parkingPlace;
+	
 	@Column
-	private float pricePerHrs;
+	private int pricePerHrs;
 
 	public Long getPriceId() {
 		return priceId;
@@ -51,7 +57,7 @@ public class ParkingPrice {
 		return pricePerHrs;
 	}
 
-	public void setPricePerHrs(float pricePerHrs) {
+	public void setPricePerHrs(int pricePerHrs) {
 		this.pricePerHrs = pricePerHrs;
 	}
 	

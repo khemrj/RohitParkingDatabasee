@@ -21,12 +21,12 @@ public interface ParkingPlaceRepository extends JpaRepository<ParkingPlace,Long>
 //			+ "    distance ASC", nativeQuery = true)
 	@Query(value = "SELECT *, \r\n"
 			+ "       (6371 * acos(\r\n"
-			+ "           cos(radians(28.729861399999997)) * cos(radians(latitude)) * \r\n"
-			+ "           cos(radians(longitude) - radians(80.56762839999999)) + \r\n"
-			+ "           sin(radians(28.729861399999997)) * sin(radians(latitude))\r\n"
+			+ "           cos(radians(?1)) * cos(radians(latitude)) * \r\n"
+			+ "           cos(radians(longitude) - radians(?2)) + \r\n"
+			+ "           sin(radians(?1)) * sin(radians(latitude))\r\n"
 			+ "       )) AS distance\r\n"
 			+ "FROM tbl_parking_place\r\n"
-			+ "HAVING distance > 3 ORDER BY \r\n"
+			+ "ORDER BY \r\n"
 			+ "    distance ASC",nativeQuery = true)
 	public List<ParkingPlace> findNearestPlace(Double lat, Double lon);
 	//hello

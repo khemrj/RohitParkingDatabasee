@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import np.edu.nast.onlineparking.DTO.ParkingPriceDTO;
 import np.edu.nast.onlineparking.entity.ParkingPrice;
 import np.edu.nast.onlineparking.repository.ParkingPriceRepository;
 
@@ -28,11 +30,23 @@ public class ParkingPriceController {
 	}
 	
 	// create
-				@PostMapping("/parkingprice")
-				public ParkingPrice createParkingPrice(@RequestBody ParkingPrice parkingPrice){
-					return parkingPriceRepo.save(parkingPrice);
+//				@PostMapping("/parkingprice")
+//				public ParkingPrice createParkingPrice(@RequestBody ParkingPrice parkingPrice){
+//					return parkingPriceRepo.save(parkingPrice);
+//		}
+				// to make it save multiple row of prices
+	@PostMapping("parkingPricesave")
+    public String saveallPrices(@RequestBody List<ParkingPriceDTO> parkingPriceDTO) {
+		System.out.println(parkingPriceDTO.toString());
+		for( int i = 0; i<parkingPriceDTO.size();i++) {
+			System.out.println("hello");
+			System.out.println(parkingPriceDTO.get(i).getCategoryId());
+			 parkingPriceRepo.saveParkingPrice(parkingPriceDTO.get(i).getCategoryId(),parkingPriceDTO.get(i).getParkingPlaceId(),parkingPriceDTO.get(i).getPricePerHrs());
+			
 		}
-				
+		 return "saved";
+        
+    }
 				//Read
 				@GetMapping("/parkingprice/{id}")
 				public ParkingPrice readParkingPrice(@PathVariable("id") Long id){

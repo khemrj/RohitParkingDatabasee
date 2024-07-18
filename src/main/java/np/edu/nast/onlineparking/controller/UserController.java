@@ -1,6 +1,7 @@
 package np.edu.nast.onlineparking.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,8 @@ public class UserController {
 		    if (user == null) {
 		        return "null"; // Returns "null" as a JSON string
 		    }
-		    return user.getPassword();
+		    String output = user.getPassword() + " " + user.getUserId() + " " + user.getPassword();
+		    return output;
 		}
 		
 		// create
@@ -45,15 +47,17 @@ public class UserController {
 				
 				//Read
 				@GetMapping("/user/{id}")
-				public User readUser(@PathVariable("id") Long id){
-					return userRepo.getById(id);
+				public Optional<User> readUser(@PathVariable("id") Long id){
+					return userRepo.findById(id);
 				}
 				
 				//Update	
 				@PutMapping("/user/{id}")
-				public User updateUser(@RequestBody User user, @PathVariable("id") Long id){
+				public String updateUser(@RequestBody User user, @PathVariable("id") Long id){
 					
-					return userRepo.save(user);
+					System.out.println(user.toString());
+					 userRepo.update(user.getFullName(),user.getEmail(),user.getMobile(),id);
+					 return "success";
 				}
 				
 				//delete
