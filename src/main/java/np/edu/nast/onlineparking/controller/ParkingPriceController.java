@@ -29,14 +29,9 @@ public class ParkingPriceController {
 	return parkingPriceRepo.findAll();
 	}
 	
-	// create
-//				@PostMapping("/parkingprice")
-//				public ParkingPrice createParkingPrice(@RequestBody ParkingPrice parkingPrice){
-//					return parkingPriceRepo.save(parkingPrice);
-//		}
-				// to make it save multiple row of prices
+// to make it save multiple row of prices
 	@PostMapping("parkingPricesave")
-    public String saveallPrices(@RequestBody List<ParkingPriceDTO> parkingPriceDTO) {
+    public List<ParkingPrice> saveallPrices(@RequestBody List<ParkingPriceDTO> parkingPriceDTO) {
 		System.out.println(parkingPriceDTO.toString());
 		for( int i = 0; i<parkingPriceDTO.size();i++) {
 			System.out.println("hello");
@@ -44,7 +39,7 @@ public class ParkingPriceController {
 			 parkingPriceRepo.saveParkingPrice(parkingPriceDTO.get(i).getCategoryId(),parkingPriceDTO.get(i).getParkingPlaceId(),parkingPriceDTO.get(i).getPricePerHrs());
 			
 		}
-		 return "saved";
+		 return parkingPriceRepo.findAll();
         
     }
 				//Read
