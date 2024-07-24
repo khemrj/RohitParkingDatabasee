@@ -12,11 +12,11 @@ public class ParkingPlaceDTO {
 	private Double distance;
 	 private Double latitude;
 	 private Double longitude;
-	 private Float pricePerHour;
-	public Float getPricePerHour() {
+	 private int pricePerHour;
+	public int getPricePerHour() {
 		return pricePerHour;
 	}
-	public void setPricePerHour(Float pricePerHour) {
+	public void setPricePerHour(int pricePerHour) {
 		this.pricePerHour = pricePerHour;
 	}
 	public Long getParkingPlaceId() {

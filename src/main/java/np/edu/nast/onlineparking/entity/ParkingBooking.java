@@ -1,9 +1,9 @@
 package np.edu.nast.onlineparking.entity;
 
+
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,18 +41,15 @@ public class ParkingBooking {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
-    private LocalDate date = java.time.LocalDate.now();
+    private LocalDate date  ;
     
-    @Temporal(TemporalType.TIME)
+   
     @Column(name = "timeFrom")
     private Time from;
     
-    @Temporal(TemporalType.TIME)
+   
     @Column(name = "timeTo")
-    private Time to;
-    
-    @Column
-    private int totalHour;
+    private Time to = new Time(System.currentTimeMillis());
     
     @Column
     private double amount;
@@ -110,13 +107,8 @@ public class ParkingBooking {
 		this.to = to;
 	}
 
-	public int getTotalHour() {
-		return totalHour;
-	}
+	
 
-	public void setTotalHour(int totalHour) {
-		this.totalHour = totalHour;
-	}
 
 	public double getAmount() {
 		return amount;
