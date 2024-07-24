@@ -1,6 +1,7 @@
 package np.edu.nast.onlineparking.entity;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -9,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -39,7 +41,7 @@ public class ParkingBooking {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
-    private Date date;
+    private LocalDate date = java.time.LocalDate.now();
     
     @Temporal(TemporalType.TIME)
     @Column(name = "timeFrom")
@@ -54,6 +56,11 @@ public class ParkingBooking {
     
     @Column
     private double amount;
+    
+    @ManyToOne
+    @JoinColumn(name="parkingPlaceId", referencedColumnName ="parkingPlaceId")
+    private ParkingPlace parkingPlace;
+    
 
 	public Long getBooking_id() {
 		return booking_id;
@@ -79,11 +86,11 @@ public class ParkingBooking {
 		this.category = category;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

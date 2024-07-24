@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import np.edu.nast.onlineparking.entity.ParkingBooking;
+import np.edu.nast.onlineparking.entity.User;
 import np.edu.nast.onlineparking.repository.ParkingBookingRepository;
 
 
@@ -28,6 +30,12 @@ public class ParkingBookingController {
 		@GetMapping("/booking")
 		public List<ParkingBooking> listAllUsers(){
 		return parkingBookingRepo.findAll();
+		}
+		
+		// create
+		@PostMapping("/bookPlace")
+		public ParkingBooking createParking(@RequestBody ParkingBooking parking){
+			return parkingBookingRepo.save(parking);
 		}
 		
 		//Read

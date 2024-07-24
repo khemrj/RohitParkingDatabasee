@@ -55,9 +55,9 @@ public class UserController {
 				@PutMapping("/user/{id}")
 				public String updateUser(@RequestBody User user, @PathVariable("id") Long id){
 					
-					System.out.println(user.toString());
 					 userRepo.update(user.getFullName(),user.getEmail(),user.getMobile(),id);
 					 return "success";
+					
 				}
 				
 				//delete

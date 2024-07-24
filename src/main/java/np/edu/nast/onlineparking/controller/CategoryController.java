@@ -27,6 +27,12 @@ public class CategoryController {
 	public List<Category> listAllCategories(){
 	return cateRepo.findAll();
 	}
+	
+	//findCatId
+	@GetMapping("/findCatId/{categoryName}")
+	public String find( @PathVariable("categoryName") String name){
+	return cateRepo.findCatId(name);
+	}
 	// create
 		@PostMapping("/category")
 		public Category createCategory(@RequestBody Category category){
