@@ -41,7 +41,7 @@ public class ParkingBooking {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
-    private LocalDate date  ;
+    private LocalDate date   ;
     
    
     @Column(name = "timeFrom")
@@ -49,7 +49,7 @@ public class ParkingBooking {
     
    
     @Column(name = "timeTo")
-    private Time to = new Time(System.currentTimeMillis());
+    private Time to ;
     
     @Column
     private double amount;
