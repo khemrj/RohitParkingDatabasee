@@ -1,6 +1,7 @@
 package np.edu.nast.onlineparking.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
+import np.edu.nast.onlineparking.DTO.ParkingPlaceDTO;
 import np.edu.nast.onlineparking.entity.ParkingPlace;
-import np.edu.nast.onlineparking.entity.Role;
 import np.edu.nast.onlineparking.repository.ParkingPlaceRepository;
 
 @RestController
@@ -32,8 +31,23 @@ public class ParkingPlaceController {
 			return placeRepo.findAll();
 			}
 			@GetMapping("/nearestPlace/{lat}/{long}")
-			public List<ParkingPlace> findNearestPlace(@PathVariable("lat") Double lat, @PathVariable("long")Double lon){
-				return placeRepo.findNearestPlace(lat, lon);
+			public List<ParkingPlaceDTO> findNearestPlace(@PathVariable("lat") Double lat, @PathVariable("long")Double lon){
+				List<ParkingPlaceDTO> dtos = new ArrayList<>();
+				List<Object[]> results =placeRepo.findNearestPlace(lat, lon);
+				for (Object[] result : results) {
+		            ParkingPlaceDTO dto = new ParkingPlaceDTO();
+		            dto.setParkingPlaceId(((Number) result[0]).longValue());
+		            dto.setPlaceName((String) result[5]);
+		            dto.setOwnerName((String) result[4]);
+		            dto.setAddress((String) result[1]);
+		            dto.setPhoneNumber(((Number) result[6]).longValue());
+		            dto.setLatitude((Double) result[2]);
+		            dto.setLongitude((Double) result[3]);
+		            dto.setDistance((Double) result[7]);
+		            System.out.println(dto.getDistance());
+		            dtos.add(dto);
+		        }
+				return dtos;
 			}
 			// create
 			@PostMapping("/place")
