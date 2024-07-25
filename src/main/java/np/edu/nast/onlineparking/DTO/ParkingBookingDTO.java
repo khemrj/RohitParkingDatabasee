@@ -14,7 +14,17 @@ public class ParkingBookingDTO {
     
     private int category_id;
     
+
+	private String from;
     
+  
+    private String to ;
+    
+   
+    private int amount;
+    
+
+   private Long parkingPlaceId;
     private LocalDate date   ;
     
    
@@ -59,22 +69,22 @@ public class ParkingBookingDTO {
 	}
 
 
-	public Time getFrom() {
+	public String getFrom() {
 		return from;
 	}
 
 
-	public void setFrom(Time from) {
+	public void setFrom(String from) {
 		this.from = from;
 	}
 
 
-	public Time getTo() {
+	public String getTo() {
 		return to;
 	}
 
 
-	public void setTo(Time to) {
+	public void setTo(String to) {
 		this.to = to;
 	}
 
@@ -99,16 +109,5 @@ public class ParkingBookingDTO {
 	}
 
 
-	private Time from;
-    
-   
-   
-    private Time to ;
-    
-   
-    private int amount;
-    
-
-   private Long parkingPlaceId;
 
 }

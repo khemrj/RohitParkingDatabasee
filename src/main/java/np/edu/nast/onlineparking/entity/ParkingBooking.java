@@ -30,11 +30,11 @@ public class ParkingBooking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long booking_id;
 	
-	@OneToOne
+	@ManyToOne
     @JoinColumn(name="user_id", referencedColumnName ="userId")
     private User user;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="category_id", referencedColumnName ="CategoryId")
     private Category category;
     

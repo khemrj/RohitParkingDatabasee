@@ -26,7 +26,7 @@ public class ParkingPrice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long priceId;
 	
-	@OneToOne
+	@ManyToOne
     @JoinColumn(name="category_id", referencedColumnName ="CategoryId")
     private Category category;
 	

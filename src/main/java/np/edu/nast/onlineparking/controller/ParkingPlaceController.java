@@ -34,15 +34,16 @@ public class ParkingPlaceController {
 			public List<ParkingPlaceDTO> findNearestPlace(@PathVariable("lat") Double lat, @PathVariable("long")Double lon,@PathVariable("catId") int catid){
 				List<ParkingPlaceDTO> dtos = new ArrayList<>();
 				List<Object[]> results =placeRepo.findNearestPlace(lat, lon,catid);
+				
 				for (Object[] result : results) {
 		            ParkingPlaceDTO dto = new ParkingPlaceDTO();
-		            dto.setParkingPlaceId(((Number) result[0]).longValue());
-		            dto.setPlaceName((String) result[5]);
-		            dto.setOwnerName((String) result[4]);
-		            dto.setAddress((String) result[1]);
-		            dto.setPhoneNumber(((Number) result[6]).longValue());
-		            dto.setLatitude((Double) result[2]);
-		            dto.setLongitude((Double) result[3]);
+		            dto.setParkingPlaceId(((Number) result[2]).longValue());
+		            dto.setPlaceName((String) result[6]);
+		            dto.setOwnerName((String) result[5]);
+		            dto.setAddress((String) result[4]);
+		            dto.setPhoneNumber(((Number) result[3]).longValue());
+		            dto.setLatitude((Double) result[0]);
+		            dto.setLongitude((Double) result[1]);
 		            dto.setDistance((Double) result[7]);
 		            dto.setPricePerHour((int) result[8]);
 		            System.out.println(dto.getDistance());

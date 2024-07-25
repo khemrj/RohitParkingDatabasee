@@ -32,10 +32,9 @@ public class ParkingPriceController {
 // to make it save multiple row of prices
 	@PostMapping("parkingPricesave")
     public List<ParkingPrice> saveallPrices(@RequestBody List<ParkingPriceDTO> parkingPriceDTO) {
-		System.out.println(parkingPriceDTO.toString());
 		for( int i = 0; i<parkingPriceDTO.size();i++) {
 			System.out.println("hello");
-			System.out.println(parkingPriceDTO.get(i).getCategoryId());
+			System.out.println(parkingPriceDTO.get(i).getParkingPlaceId());
 			 parkingPriceRepo.saveParkingPrice(parkingPriceDTO.get(i).getCategoryId(),parkingPriceDTO.get(i).getParkingPlaceId(),parkingPriceDTO.get(i).getPricePerHrs());
 			
 		}
